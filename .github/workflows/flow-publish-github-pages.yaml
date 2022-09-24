@@ -67,6 +67,11 @@ jobs:
     needs: build
     if: ${{ github.ref == 'refs/heads/main' }}
     steps:
+      - name: Install Security Agent
+        uses: step-security/harden-runner@dd2c410b088af7c0dc8046f3ac9a8f4148492a95
+        with:
+          egress-policy: audit
+          
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@44d42469122ee9e44e202f0a0fab6f266fb3f139
